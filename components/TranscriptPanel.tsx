@@ -22,7 +22,8 @@ export default function TranscriptPanel({
       <textarea
         value={transcript || "No transcription yet."}
         readOnly
-        className="w-full min-h-[120px] bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg p-4 resize-none select-text cursor-default border border-gray-200 dark:border-gray-600"
+        onFocus={(e) => e.currentTarget.blur()}
+        className="w-full min-h-[120px] bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg p-4 resize-none select-text caret-transparent border border-gray-200 dark:border-gray-600"
         placeholder="Your transcription will appear here..."
       />
 

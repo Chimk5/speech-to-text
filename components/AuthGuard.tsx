@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabaseClient";
+import { supabase } from "../lib/supabaseClient";
 import { useRouter } from "next/navigation";
 
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
@@ -16,7 +16,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
       } = await supabase.auth.getSession();
 
       if (!session) {
-        router.replace("/login"); // 🔁 Redirect to login page
+        router.replace("/auth/login"); // 🔁 Redirect to login page
       } else {
         setAuthenticated(true);
       }
@@ -27,7 +27,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
 
     // ✅ Listen for auth changes (login/logout)
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) router.replace("/login");
+      if (!session) router.replace("/auth/login");
       else setAuthenticated(true);
     });
 
